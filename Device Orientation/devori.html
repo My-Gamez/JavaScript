@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Device Orientation</title>
+</head>
+<style>
+  #ball{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    transform: translate(-50%,-50%);
+    background-color: yellowgreen;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+</style>
+<body>
+  <div id="txt1"></div>
+  <div id="txt2"></div>
+  <div id="txt3"></div>
+  <div id="ball"></div>
+  <script>
+    window.addEventListener('deviceorientation',function(e){
+      let x=Math.floor(e.beta);
+      let y=Math.floor(e.gamma);
+      let z=Math.floor(e.alpha);
+      document.getElementById('txt1').innerText="X:"+x;
+      document.getElementById('txt2').innerText="Y:"+y;
+      document.getElementById('txt3').innerText="Z:"+z;
+     
+      let ball=document.getElementById('ball');
+      let by=parseInt(window.getComputedStyle(ball,null).getPropertyValue('top'));
+      let bx=parseInt(window.getComputedStyle(ball,null).getPropertyValue('left'));
+      if(x<0){
+        ball.style.top=(by+x)+"px";
+      }else if(x>0){
+        ball.style.top=(by+x)+"px";
+      }
+      else if(y<0){
+        ball.style.left=(bx+y)+"px";
+      }
+      else if(y>0){
+        ball.style.left=(bx+y)+"px";
+      }
+     
+    })
+  </script>
+</body>
+
+</html>

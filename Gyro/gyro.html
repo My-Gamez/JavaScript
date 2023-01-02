@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gyro</title>
+</head>
+
+<body>
+  <div id="x"></div>
+  <div id="y"></div>
+  <div id="z"></div>
+  <div id="print"></div>
+  <script>
+var gyro = new Gyroscope();
+var x=document.getElementById('x');
+var y=document.getElementById('y');
+var z=document.getElementById('z');
+var p=document.getElementById('print');
+gyro.addEventListener('reading', (e) => {
+  x.innerText=gyro.x;
+  y.innerText=gyro.y;
+  z.innerText=gyro.z;
+  if(gyro.x<0){
+    p.innerText="Left";
+  }
+  else if(gyro.x>0){
+    p.innerText="Right";
+  }
+  else{
+    p.innerText="Stop";
+  }
+});
+gyro.start();
+</script>
+</body>
+
+</html>
